@@ -2,6 +2,7 @@ import './App.css';
 import React from 'react';
 import { useState } from 'react';
 import Checkbox from './components/Checkbox';
+import SumaPrecios from './components/SumaPrecios';
 import ServiciosWeb from './components/ServiciosWeb';
 
 function App() {
@@ -31,7 +32,7 @@ function App() {
     setChecked3(!checked3);
   };
 
-  const SumaPrecios = (e) => {
+ /* const SumaPrecios = (e) => {
     let webPrice = checked1 ? 500 : 0;
 
     let webPaginas = input1 * 30;
@@ -48,7 +49,7 @@ function App() {
       <p>Precio: {suma}€</p>
       </div>
     );
-  }
+  }*/
 
   const OpcWeb = (e) => {
     if(checked1 === true) {
@@ -99,7 +100,13 @@ function App() {
             />
         </div>
         </div>
-      <SumaPrecios/>
+      <SumaPrecios
+        input1={input1}
+        input2={input2}
+        checked1={checked1}
+        checked2={checked2}
+        checked3={checked3}
+      />
     </div>
   );
 }
