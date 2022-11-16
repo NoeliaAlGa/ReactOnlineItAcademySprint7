@@ -2,11 +2,22 @@ import './App.css';
 import React from 'react';
 import { useState } from 'react';
 import Checkbox from './components/Checkbox';
+import ServiciosWeb from './components/ServiciosWeb';
 
 function App() {
   const [checked1, setChecked1] = useState(false);
   const [checked2, setChecked2] = useState(false);
   const [checked3, setChecked3] = useState(false);
+
+  const [input1, setInput1] = useState(0);
+  const [input2, setInput2] = useState(0);
+
+  const handleInput1 = (e) => {
+    setInput1(e.target.value);
+  }
+  const handleInput2 = (e) => {
+    setInput2(e.target.value);
+  }
   
   const handleChange1 = () => {
     setChecked1(!checked1);
@@ -22,17 +33,40 @@ function App() {
 
   const SumaPrecios = (e) => {
     let webPrice = checked1 ? 500 : 0;
+
+    let webPaginas = input1 * 30;
+    
+    let webIdiomas = input2 * 30;
     
     let seoPrice = checked2 ? 300 : 0;
   
     let googleAdsPrice = checked3 ? 200 : 0;
   
-    const suma = webPrice + seoPrice + googleAdsPrice;
+    const suma = webPrice + webPaginas + webIdiomas + seoPrice + googleAdsPrice;
     return (
     <div>
       <p>Precio: {suma}€</p>
       </div>
     );
+  }
+
+  const OpcWeb = (e) => {
+    if(checked1 === true) {
+      return <>
+              <ServiciosWeb
+                id="paginas"
+                text="Número de páginas "
+                value={input1}
+                onChange={handleInput1}
+              />
+              <ServiciosWeb
+                id="idiomas"
+                text = "Número de idiomas "
+                value={input2}
+                onChange={handleInput2}
+              />
+            </>
+    }
   }
 
   return (
@@ -46,6 +80,7 @@ function App() {
             checked={checked1}
             onChange={handleChange1}
             />
+          <OpcWeb/>
         </div>
         <div>
           <Checkbox
