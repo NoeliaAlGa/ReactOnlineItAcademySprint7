@@ -10,8 +10,11 @@ function App() {
   const [checked2, setChecked2] = useState(false);
   const [checked3, setChecked3] = useState(false);
 
-  const [input1, setInput1] = useState(0);
+  const [input1, setInput1] = useState(0); 
   const [input2, setInput2] = useState(0);
+
+  const [counterInput1, setCounterInput1] = useState(0);
+  const [counterInput2, setCounterInput2] = useState(0);
 
   const handleInput1 = (e) => {
     setInput1(e.target.value);
@@ -32,39 +35,24 @@ function App() {
     setChecked3(!checked3);
   };
 
- /* const SumaPrecios = (e) => {
-    let webPrice = checked1 ? 500 : 0;
-
-    let webPaginas = input1 * 30;
-    
-    let webIdiomas = input2 * 30;
-    
-    let seoPrice = checked2 ? 300 : 0;
-  
-    let googleAdsPrice = checked3 ? 200 : 0;
-  
-    const suma = webPrice + webPaginas + webIdiomas + seoPrice + googleAdsPrice;
-    return (
-    <div>
-      <p>Precio: {suma}€</p>
-      </div>
-    );
-  }*/
-
   const OpcWeb = (e) => {
     if(checked1 === true) {
       return <>
               <ServiciosWeb
                 id="paginas"
                 text="Número de páginas "
-                value={input1}
+                value={counterInput1}
                 onChange={handleInput1}
+                onClickSuma={() => setCounterInput1(counterInput1 + 1)}
+                onClickResta={() => setCounterInput1(counterInput1 - 1)}
               />
               <ServiciosWeb
                 id="idiomas"
                 text = "Número de idiomas "
-                value={input2}
+                value={counterInput2}
                 onChange={handleInput2}
+                onClickSuma={() => setCounterInput2(counterInput2 + 1)}
+                onClickResta={() => setCounterInput2(counterInput2 - 1)}
               />
             </>
     }
@@ -101,8 +89,8 @@ function App() {
         </div>
         </div>
       <SumaPrecios
-        input1={input1}
-        input2={input2}
+        input1={counterInput1} 
+        input2={counterInput2}
         checked1={checked1}
         checked2={checked2}
         checked3={checked3}
