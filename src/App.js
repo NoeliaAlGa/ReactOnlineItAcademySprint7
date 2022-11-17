@@ -4,17 +4,16 @@ import { useState } from 'react';
 import Checkbox from './components/Checkbox';
 import SumaPrecios from './components/SumaPrecios';
 import ServiciosWeb from './components/ServiciosWeb';
+import {StyleServiciosWeb} from './components/styled';
 
 function App() {
   const [checked1, setChecked1] = useState(false);
   const [checked2, setChecked2] = useState(false);
   const [checked3, setChecked3] = useState(false);
 
+  debugger;
   const [input1, setInput1] = useState(0); 
   const [input2, setInput2] = useState(0);
-
-  const [counterInput1, setCounterInput1] = useState(0);
-  const [counterInput2, setCounterInput2] = useState(0);
 
   const handleInput1 = (e) => {
     setInput1(e.target.value);
@@ -37,24 +36,24 @@ function App() {
 
   const OpcWeb = (e) => {
     if(checked1 === true) {
-      return <>
+      return <StyleServiciosWeb>
               <ServiciosWeb
                 id="paginas"
                 text="Número de páginas "
-                value={counterInput1}
+                value={input1}
                 onChange={handleInput1}
-                onClickSuma={() => setCounterInput1(counterInput1 + 1)}
-                onClickResta={() => setCounterInput1(counterInput1 - 1)}
+                onClickSuma={() => setInput1(input1 + 1)}
+                onClickResta={() => setInput1(input1 - 1)}
               />
               <ServiciosWeb
                 id="idiomas"
                 text = "Número de idiomas "
-                value={counterInput2}
+                value={input2}
                 onChange={handleInput2}
-                onClickSuma={() => setCounterInput2(counterInput2 + 1)}
-                onClickResta={() => setCounterInput2(counterInput2 - 1)}
+                onClickSuma={() => setInput2(input2 + 1)}
+                onClickResta={() => setInput2(input2 - 1)}
               />
-            </>
+            </StyleServiciosWeb>
     }
   }
 
@@ -89,8 +88,8 @@ function App() {
         </div>
         </div>
       <SumaPrecios
-        input1={counterInput1} 
-        input2={counterInput2}
+        input1={input1} 
+        input2={input2}
         checked1={checked1}
         checked2={checked2}
         checked3={checked3}

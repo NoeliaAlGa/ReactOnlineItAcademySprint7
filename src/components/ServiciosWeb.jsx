@@ -1,13 +1,14 @@
 import React from 'react'
+import {InputStyle, ButtonsStyle} from './styled';
 
 const ServiciosWeb = ({id, text ,value, onChange, onClickSuma, onClickResta}) => {
     
     return (
         <div>
             <p>{text}
-            <button onClick={onClickSuma}>+</button> 
-            <input id={id} key={id} value={value} type="number" onChange={onChange}/>
-            <button onClick={onClickResta}>-</button>
+            <ButtonsStyle onClick={onClickSuma}>+</ButtonsStyle> 
+            <InputStyle id={id} key={id} value={value} type="number" onChange={onChange}/>
+            <ButtonsStyle onClick={onClickResta}>-</ButtonsStyle>
             </p>
         </div>
     );
