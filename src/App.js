@@ -11,12 +11,33 @@ function App() {
   const [checked2, setChecked2] = useState(false);
   const [checked3, setChecked3] = useState(false);
 
-  debugger;
-  const [input1, setInput1] = useState(0); 
+  const [input1, setInput1] = useState( 
+    window.localStorage.getItem('input1')
+    /*()=> {
+      if (window.localStorage.getItem("input1") === "undefined") {
+        window.localStorage.setItem("input1", 0)
+      }
+        return window.localStorage.getItem("input1")
+    } 
+    He intentat inicialitzar aixi, per a retornar el 0 pero no funciona*/
+  ); 
+
   const [input2, setInput2] = useState(0);
 
+  const setLocalStorage = (value) => {
+    debugger
+    try {
+      setInput1(value)
+      window.localStorage.setItem("input1", value)
+    }
+    catch(error) {
+      console.error(error);
+    }
+  }
+
   const handleInput1 = (e) => {
-    setInput1(e.target.value);
+    /*setInput1(e.target.value);*/
+    setLocalStorage(e.target.value);
   }
   const handleInput2 = (e) => {
     setInput2(e.target.value);
@@ -60,40 +81,42 @@ function App() {
   return (
     <div className="App">
       <p>Qué quieres hacer?</p>
-      <div>
+      <form>
         <div>
-          <Checkbox
-            id="1"
-            value="Una pàgina web (500€)"
-            checked={checked1}
-            onChange={handleChange1}
-            />
-          <OpcWeb/>
+          <div>
+            <Checkbox
+              id="1"
+              value="Una pàgina web (500€)"
+              checked={checked1}
+              onChange={handleChange1}
+              />
+            <OpcWeb/>
+          </div>
+          <div>
+            <Checkbox
+              id="2"
+              value ="Una consultoria SEO (300€)"
+              checked={checked2}
+              onChange={handleChange2}
+              />
+          </div>
+          <div>
+            <Checkbox
+              id="3"
+              value="Una campaña de Google Ads (200€)"
+              checked={checked3}
+              onChange={handleChange3}
+              />
+          </div>
         </div>
-        <div>
-          <Checkbox
-            id="2"
-            value ="Una consultoria SEO (300€)"
-            checked={checked2}
-            onChange={handleChange2}
-            />
-        </div>
-        <div>
-          <Checkbox
-            id="3"
-            value="Una campaña de Google Ads (200€)"
-            checked={checked3}
-            onChange={handleChange3}
-            />
-        </div>
-        </div>
-      <SumaPrecios
-        input1={input1} 
-        input2={input2}
-        checked1={checked1}
-        checked2={checked2}
-        checked3={checked3}
-      />
+        <SumaPrecios
+          input1={input1} 
+          input2={input2}
+          checked1={checked1}
+          checked2={checked2}
+          checked3={checked3}
+        />
+      </form>
     </div>
   );
 }
