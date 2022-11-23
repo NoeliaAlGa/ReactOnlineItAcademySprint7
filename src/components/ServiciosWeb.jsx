@@ -1,7 +1,7 @@
 import React from 'react'
 import {InputStyle, ButtonsStyle} from './styled';
 
-const ServiciosWeb = ({id, llave, text ,value, onChange, onClickSuma, onClickResta}) => {
+const ServiciosWeb = ({id, text ,value, onChange, onClickSuma, onClickResta}) => {
     
     return (
         <div>

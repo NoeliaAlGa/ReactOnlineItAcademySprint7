@@ -7,52 +7,99 @@ import ServiciosWeb from './components/ServiciosWeb';
 import {StyleServiciosWeb} from './components/styled';
 
 function App() {
-  const [checked1, setChecked1] = useState(false);
-  const [checked2, setChecked2] = useState(false);
-  const [checked3, setChecked3] = useState(false);
 
-  const [input1, setInput1] = useState( 
-    window.localStorage.getItem('input1')
-    /*()=> {
-      if (window.localStorage.getItem("input1") === "undefined") {
-        window.localStorage.setItem("input1", 0)
-      }
-        return window.localStorage.getItem("input1")
-    } 
-    He intentat inicialitzar aixi, per a retornar el 0 pero no funciona*/
-  ); 
+  const [checked1, setChecked1] = useState(() => {
 
-  const [input2, setInput2] = useState(0);
+    const valorGuardado = window.localStorage.getItem('checked1');
+    const valorInicial = JSON.parse(valorGuardado);
 
-  const setLocalStorage = (value) => {
-    debugger
-    try {
-      setInput1(value)
-      window.localStorage.setItem("input1", value)
+    if (valorInicial === null) {
+      window.localStorage.setItem('checked1', false);
     }
-    catch(error) {
-      console.error(error);
+
+    return Boolean(valorInicial);
+  });
+
+  const [checked2, setChecked2] = useState(() => {
+
+    const valorGuardado = window.localStorage.getItem('checked2');
+    const valorInicial = JSON.parse(valorGuardado);
+
+    if (valorInicial === null) {
+      window.localStorage.setItem('checked2', false);
     }
-  }
+
+    return Boolean(valorInicial);
+  });
+
+  const [checked3, setChecked3] = useState(() => {
+
+    const valorGuardado = window.localStorage.getItem('checked3');
+    const valorInicial = JSON.parse(valorGuardado);
+
+    if (valorInicial === null) {
+      window.localStorage.setItem('checked3', false);
+    }
+
+    return Boolean(valorInicial);
+  });
+
+  const [input1, setInput1] = useState(() => {
+    if (Number(window.localStorage.getItem('input1')) === null) {
+      Number(window.localStorage.setItem('input1', 0));
+    }
+    return Number(window.localStorage.getItem('input1'));
+  });
+
+  const [input2, setInput2] = useState(() => {
+    if (Number(window.localStorage.getItem('input2')) === null) {
+      Number(window.localStorage.setItem('input2', 0));
+    }
+    return Number(window.localStorage.getItem('input2'));
+  });
 
   const handleInput1 = (e) => {
-    /*setInput1(e.target.value);*/
-    setLocalStorage(e.target.value);
-  }
+    setInput1(e.target.value);
+    window.localStorage.setItem('input1', e.target.value);
+  };
+
+  const handleInputSuma1 = (e) => {
+      const numActualInput1 = Number.parseInt(input1) + 1;
+      window.localStorage.setItem('input1', numActualInput1);
+  };
+  const handleInputResta1 = (e) => {
+      const numActualInput1 = Number.parseInt(input1) - 1;
+      window.localStorage.setItem('input1', numActualInput1);
+  };
+
   const handleInput2 = (e) => {
     setInput2(e.target.value);
+    window.localStorage.setItem('input2', e.target.value);
   }
+
+  const handleInputSuma2 = (e) => {
+    const numActualInput2 = Number.parseInt(input2) + 1;
+    window.localStorage.setItem('input2', numActualInput2);
+};
+const handleInputResta2 = (e) => {
+
+    const numActualInput2 = Number.parseInt(input2) - 1;
+    window.localStorage.setItem('input2', numActualInput2);
+};
   
-  const handleChange1 = () => {
-    setChecked1(!checked1);
+  const handleChange1 = (e) => {
+    setChecked1(e.target.checked)
+    window.localStorage.setItem('checked1', e.target.checked);
   };
 
-  const handleChange2 = () => {
-    setChecked2(!checked2);
+  const handleChange2 = (e) => {
+    setChecked2(e.target.checked)
+    window.localStorage.setItem('checked2', e.target.checked);
   };
 
-  const handleChange3 = () => {
-    setChecked3(!checked3);
+  const handleChange3 = (e) => {
+    setChecked3(e.target.checked)
+    window.localStorage.setItem('checked3', e.target.checked);
   };
 
   const OpcWeb = (e) => {
@@ -63,23 +110,23 @@ function App() {
                 text="Número de páginas "
                 value={input1}
                 onChange={handleInput1}
-                onClickSuma={() => setInput1(input1 + 1)}
-                onClickResta={() => setInput1(input1 - 1)}
+                onClickSuma={handleInputSuma1}
+                onClickResta={handleInputResta1}
               />
               <ServiciosWeb
                 id="idiomas"
                 text = "Número de idiomas "
                 value={input2}
                 onChange={handleInput2}
-                onClickSuma={() => setInput2(input2 + 1)}
-                onClickResta={() => setInput2(input2 - 1)}
+                onClickSuma={handleInputSuma2}
+                onClickResta={handleInputResta2}
               />
             </StyleServiciosWeb>
     }
   }
 
   return (
-    <div className="App">
+    <div className="App" on>
       <p>Qué quieres hacer?</p>
       <form>
         <div>

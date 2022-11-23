@@ -15,7 +15,7 @@ const SumaPrecios = ({checked1, input1, input2, checked2, checked3}) => {
     return (
     <div>
       <p>Precio: {suma}€</p>
-      </div>
+    </div>
     );
   }
 
