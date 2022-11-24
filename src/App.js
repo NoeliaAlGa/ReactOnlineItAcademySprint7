@@ -7,37 +7,28 @@ import ServiciosWeb from "./components/ServiciosWeb";
 import { StyleServiciosWeb } from "./components/styled";
 
 function App() {
-  const [checked1, setChecked1] = useState(() => {
-    const valorGuardado = window.localStorage.getItem("checked1");
+
+  function obtenerValorInicial(key) {
+    const valorGuardado = window.localStorage.getItem(key);
     const valorInicial = JSON.parse(valorGuardado);
 
     if (valorInicial === null) {
-      window.localStorage.setItem("checked1", false);
+      window.localStorage.setItem(key, false);
     }
 
     return Boolean(valorInicial);
+  }
+  const [checked1, setChecked1] = useState(() => {
+    return obtenerValorInicial("checked1");
   });
+  
 
   const [checked2, setChecked2] = useState(() => {
-    const valorGuardado = window.localStorage.getItem("checked2");
-    const valorInicial = JSON.parse(valorGuardado);
-
-    if (valorInicial === null) {
-      window.localStorage.setItem("checked2", false);
-    }
-
-    return Boolean(valorInicial);
+    return obtenerValorInicial("checked2");
   });
 
   const [checked3, setChecked3] = useState(() => {
-    const valorGuardado = window.localStorage.getItem("checked3");
-    const valorInicial = JSON.parse(valorGuardado);
-
-    if (valorInicial === null) {
-      window.localStorage.setItem("checked3", false);
-    }
-
-    return Boolean(valorInicial);
+    return obtenerValorInicial("checked3");
   });
 
   const [input1, setInput1] = useState(() => {
@@ -55,7 +46,6 @@ function App() {
   });
 
   const handleInput = (e, nomInput) => {
-    debugger;
     if(nomInput === "input1") {
       setInput1(e.target.value);
     }
@@ -96,11 +86,13 @@ function App() {
     if (checkAct === "checked1") {
       setChecked1(e.target.checked);
     } 
-    if (checkAct === "checked2") {
+    else if (checkAct === "checked2") {
       setChecked2(e.target.checked);
     } 
-    if (checkAct === "d") {
-      setChecked3(e.target.checked);
+    else {
+      if (checkAct === "checked3") {
+        setChecked3(e.target.checked);
+      }
     }
     window.localStorage.setItem(checkAct, e.target.checked);
   };
