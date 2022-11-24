@@ -12,11 +12,18 @@ function App() {
     const valorGuardado = window.localStorage.getItem(key);
     const valorInicial = JSON.parse(valorGuardado);
 
-    if (valorInicial === null) {
-      window.localStorage.setItem(key, false);
+    if(String(key).startsWith("checked")) {
+      if (valorInicial === null) {
+        window.localStorage.setItem(key, false);
+      }
+      return Boolean(valorInicial);
     }
-
-    return Boolean(valorInicial);
+    else {
+      if (valorInicial === null) {
+        window.localStorage.setItem(key, 0);
+      }
+      return Number(valorInicial);
+    }
   }
   const [checked1, setChecked1] = useState(() => {
     return obtenerValorInicial("checked1");
@@ -32,17 +39,11 @@ function App() {
   });
 
   const [input1, setInput1] = useState(() => {
-    if (Number(window.localStorage.getItem("input1")) === null) {
-      Number(window.localStorage.setItem("input1", 0));
-    }
-    return Number(window.localStorage.getItem("input1"));
+    return obtenerValorInicial("input1");
   });
 
   const [input2, setInput2] = useState(() => {
-    if (Number(window.localStorage.getItem("input2")) === null) {
-      Number(window.localStorage.setItem("input2", 0));
-    }
-    return Number(window.localStorage.getItem("input2"));
+    return obtenerValorInicial("input2");
   });
 
   const handleInput = (e, nomInput) => {
