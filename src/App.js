@@ -1,35 +1,18 @@
 import "./App.css";
 import React from "react";
 import { useState } from "react";
+import obtenerValorInicial from "./components/ObtenerValorInicial";
 import Checkbox from "./components/Checkbox";
 import SumaPrecios from "./components/SumaPrecios";
-import ServiciosWeb from "./components/ServiciosWeb";
-import { StyleServiciosWeb } from "./components/styled";
+//import ServiciosWeb from "./components/ServiciosWeb";
+//import { StyleServiciosWeb } from "./components/styled";
+import OpcWeb from "./components/OpcWeb";
 
 function App() {
-
-  function obtenerValorInicial(key) {
-    const valorGuardado = window.localStorage.getItem(key);
-    const valorInicial = JSON.parse(valorGuardado);
-
-    if(String(key).startsWith("checked")) {
-      if (valorInicial === null) {
-        window.localStorage.setItem(key, false);
-      }
-      return Boolean(valorInicial);
-    }
-    else {
-      if (valorInicial === null) {
-        window.localStorage.setItem(key, 0);
-      }
-      return Number(valorInicial);
-    }
-  }
   const [checked1, setChecked1] = useState(() => {
     return obtenerValorInicial("checked1");
   });
   
-
   const [checked2, setChecked2] = useState(() => {
     return obtenerValorInicial("checked2");
   });
@@ -56,32 +39,30 @@ function App() {
     window.localStorage.setItem(nomInput, e.target.value);
   };
 
-  const handleInputSuma = (e, nomInput) => {
-    let suma;
-    if(nomInput === "input1") {
-      suma = Number.parseInt(input1) + 1;
-      setInput1(suma);
+  const handleInputSumaResta = (e, nomInput, signo) => {
+    let valor;
+    if(signo === "+") {
+      if(nomInput === "input1") {
+        valor = Number.parseInt(input1) + 1;
+        setInput1(valor);
+      }
+      if(nomInput === "input2") {
+        valor = Number.parseInt(input2) + 1;
+        setInput2(valor);
+      }
     }
-    if(nomInput === "input2") {
-      suma = Number.parseInt(input2) + 1;
-      setInput2(suma);
+    else {
+      if(nomInput === "input1") {
+        valor = Number.parseInt(input1) - 1;
+        setInput1(valor);
+      }
+      if(nomInput === "input2") {
+        valor = Number.parseInt(input2) - 1;
+        setInput2(valor);
+      }
     }
-    window.localStorage.setItem(nomInput, suma);
+    window.localStorage.setItem(nomInput, valor);
   };
-
-  const handleInputResta = (e, nomInput) => {
-    let resta;
-    if(nomInput === "input1") {
-      resta = Number.parseInt(input1) - 1;
-      setInput1(resta);
-    }
-    if(nomInput === "input2") {
-      resta = Number.parseInt(input2) - 1;
-      setInput2(resta);
-    }
-    window.localStorage.setItem(nomInput, resta);
-  };
-
 
   const handleChange = (e, checkAct) => {
     if (checkAct === "checked1") {
@@ -91,37 +72,12 @@ function App() {
       setChecked2(e.target.checked);
     } 
     else {
-      if (checkAct === "checked3") {
         setChecked3(e.target.checked);
-      }
     }
     window.localStorage.setItem(checkAct, e.target.checked);
   };
 
-  const OpcWeb = (e) => {
-    if (checked1 === true) {
-      return (
-        <StyleServiciosWeb>
-          <ServiciosWeb
-            id="paginas"
-            text="Número de páginas "
-            value={input1}
-            onChange={(e) => handleInput(e, "input1")}
-            onClickSuma={(e) => handleInputSuma (e, "input1")}
-            onClickResta={(e) => handleInputResta (e, "input1")}
-          />
-          <ServiciosWeb
-            id="idiomas"
-            text="Número de idiomas "
-            value={input2}
-            onChange={(e) => handleInput(e, "input2")}
-            onClickSuma={(e) => handleInputSuma (e, "input2")}
-            onClickResta={(e) => handleInputResta (e, "input2")}
-          />
-        </StyleServiciosWeb>
-      );
-    }
-  };
+  const opcionesWeb = OpcWeb(checked1, input1, input2, handleInputSumaResta, handleInput);
 
   return (
     <div className="App" on>
@@ -134,7 +90,7 @@ function App() {
               checked={checked1}
               onChange={(e) => handleChange(e, "checked1")}
             />
-            <OpcWeb />
+            <div>{opcionesWeb}</div>
           </div>
           <div>
             <Checkbox
