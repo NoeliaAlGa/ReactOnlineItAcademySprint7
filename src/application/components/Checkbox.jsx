@@ -1,11 +1,12 @@
 import React from "react";
+import {StyleText} from './styled'
 
 const Checkbox = ({id, value, checked, onChange}) => {
     return (
-        <label>
+        <StyleText>
             <input id={id} key={id} type="checkbox" checked={checked} onChange={onChange} />
             {value}
-        </label>
+        </StyleText>
     );
 };
 

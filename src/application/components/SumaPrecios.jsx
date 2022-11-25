@@ -1,4 +1,5 @@
 import React from "react";
+import {StyleSDiv} from './styled'
 
 const SumaPrecios = ({checked1, input1, input2, checked2, checked3}) => {
     let webPrice = checked1 ? 500 : 0;
@@ -13,9 +14,9 @@ const SumaPrecios = ({checked1, input1, input2, checked2, checked3}) => {
   
     const suma = webPrice + webPaginas + webIdiomas + seoPrice + googleAdsPrice;
     return (
-    <div>
+    <StyleSDiv>
       <p>Precio: {suma}€</p>
-    </div>
+    </StyleSDiv>
     );
   }
 
