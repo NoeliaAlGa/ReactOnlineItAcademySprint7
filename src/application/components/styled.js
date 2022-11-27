@@ -2,12 +2,17 @@ import styled from "styled-components";
 
 export const StyleText = styled.label `
     font-family: Arial, Helvetica, sans-serif;
+    margin: 1rem;
 `
 export const StyleP = styled.p `
     font-family: Arial, Helvetica, sans-serif;
     font-weight:bold;
     font-size: 20px;
     color: coral;
+`
+
+export const BasicDataStyle = styled.div `
+    margin: 2rem;
 `
 export const StyleH1 = styled.h1 `
     font-family: Arial, Helvetica, sans-serif;
@@ -64,6 +69,7 @@ export const ButtonHome = styled.button `
     padding: 0px 20px 0px 20px;
     font-size: 20px;
     font-weight:bold;
+    margin: 1rem
 `
 export const PHome = styled.p `
     text-decoration: underline overline;
