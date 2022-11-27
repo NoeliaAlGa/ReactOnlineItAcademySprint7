@@ -13,6 +13,7 @@ const SumaPrecios = ({checked1, input1, input2, checked2, checked3}) => {
     let googleAdsPrice = checked3 ? 200 : 0;
   
     const suma = webPrice + webPaginas + webIdiomas + seoPrice + googleAdsPrice;
+
     return (
     <StyleSDiv>
       <p>Precio: {suma}€</p>

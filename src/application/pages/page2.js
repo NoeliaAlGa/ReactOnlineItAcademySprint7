@@ -1,15 +1,26 @@
-import "../App.css";
 import React from "react";
 import { useState } from "react";
 import obtenerValorInicial from "../components/ObtenerValorInicial";
 import obtenerValorInicialString from "../components/ObtenerValorInicialStrings";
+import guardarPresupuesto from "../components/GuardarPresuspuesto";
 import Checkbox from "../components/Checkbox";
 import BasicInputData from "../components/BasicInputData";
 import SumaPrecios from "../components/SumaPrecios";
 import OpcWeb from "../components/OpcWeb";
-import { StyleP, StyleSDiv, BasicDataStyle, ButtonHome } from "../components/styled";
+import MostrarPresupuestos from "../components/MostrarPresupuestos";
+import {
+  StyleP,
+  StyleSDiv,
+  BasicDataStyle,
+  ButtonGuardar,
+  StyleForm,
+  StyleDivPresupuesto,
+  BodyStyle,
+} from "../components/styled";
 
 const Page2 = () => {
+  const [numPresupuestos, setNumPresupuestos] = useState(0);
+
   const [inputData1, setInputData1] = useState(() => {
     return obtenerValorInicialString("inputData1");
   });
@@ -99,60 +110,71 @@ const Page2 = () => {
   );
 
   return (
-    <div className="App" on>
-      <StyleP>Qué quieres hacer?</StyleP>
-      <div>
-        <StyleSDiv>
-          <BasicInputData
-            id="nombrePresupuesto"
-            text="Nombre presupuesto "
-            value={inputData1}
-            onChange={(e) => handleInput(e, "inputData1")}
+    <BodyStyle>
+      <StyleForm>
+        <StyleP>Qué quieres hacer?</StyleP>
+        <div>
+          <StyleSDiv>
+            <BasicInputData
+              id="nombrePresupuesto"
+              text="Nombre presupuesto "
+              value={inputData1}
+              onChange={(e) => handleInput(e, "inputData1")}
+            />
+            <BasicInputData
+              id="nombreCliente"
+              text="Nombre cliente "
+              value={inputData2}
+              onChange={(e) => handleInput(e, "inputData2")}
+            />
+          </StyleSDiv>
+          <BasicDataStyle>
+            <div>
+              <Checkbox
+                id="1"
+                value="Una pàgina web (500€)"
+                checked={checked1}
+                onChange={(e) => handleChange(e, "checked1")}
+              />
+              <div>{opcionesWeb}</div>
+            </div>
+            <div>
+              <Checkbox
+                id="2"
+                value="Una consultoria SEO (300€)"
+                checked={checked2}
+                onChange={(e) => handleChange(e, "checked2")}
+              />
+            </div>
+            <div>
+              <Checkbox
+                id="3"
+                value="Una campaña de Google Ads (200€)"
+                checked={checked3}
+                onChange={(e) => handleChange(e, "checked3")}
+              />
+            </div>
+          </BasicDataStyle>
+          <SumaPrecios
+            input1={input1}
+            input2={input2}
+            checked1={checked1}
+            checked2={checked2}
+            checked3={checked3}
           />
-          <BasicInputData
-            id="nombreCliente"
-            text="Nombre cliente "
-            value={inputData2}
-            onChange={(e) => handleInput(e, "inputData2")}
-          />
-        </StyleSDiv>
-        <BasicDataStyle>
-          <div>
-            <Checkbox
-              id="1"
-              value="Una pàgina web (500€)"
-              checked={checked1}
-              onChange={(e) => handleChange(e, "checked1")}
-            />
-            <div>{opcionesWeb}</div>
-          </div>
-          <div>
-            <Checkbox
-              id="2"
-              value="Una consultoria SEO (300€)"
-              checked={checked2}
-              onChange={(e) => handleChange(e, "checked2")}
-            />
-          </div>
-          <div>
-            <Checkbox
-              id="3"
-              value="Una campaña de Google Ads (200€)"
-              checked={checked3}
-              onChange={(e) => handleChange(e, "checked3")}
-            />
-          </div>
-        </BasicDataStyle>
-        <SumaPrecios
-          input1={input1}
-          input2={input2}
-          checked1={checked1}
-          checked2={checked2}
-          checked3={checked3}
-        />
-      </div>
-      
-    </div>
+        </div>
+        <ButtonGuardar onClick={() => {
+          guardarPresupuesto(); 
+          setNumPresupuestos(numPresupuestos + 1);
+          }}>Guardar</ButtonGuardar>
+    
+      </StyleForm>
+      <StyleDivPresupuesto>
+        <StyleP>Presupuestos guardados:</StyleP>
+        <MostrarPresupuestos count={numPresupuestos} />
+      </StyleDivPresupuesto>
+    </BodyStyle>
   );
 };
+
 export default Page2;
