@@ -2,17 +2,22 @@ import styled from "styled-components";
 
 export const BodyStyle = styled.div `
     font-family: Arial, Helvetica, sans-serif;
-    
+    margin: 5rem;
+`
+export const BodyStyleP2 = styled(BodyStyle) `
+    background-color: coral;
+    margin: 0;
 `
 
 export const StyleForm = styled.div `
+    margin-left: 5rem;
     width: 40%;
     float:left;
 `
 export const StyleDivPresupuesto = styled(StyleForm) `
     border: 3px solid coral;
     border-radius: 15%;
-    margin: 2rem;
+    margin: 2rem 5rem 0rem 0rem;
     float:right;
 `
 
@@ -44,6 +49,11 @@ export const BasicDataStyle = styled.div `
 export const StyleH1 = styled.h1 `
     font-weight:bold;
     font-size: 40px;
+    text-align: center;
+`
+export const StyleH1P2 = styled(StyleH1) `
+    margin: 0;
+    padding: 1rem;
 `
 export const StyleServiciosWeb = styled.div `
     border: 3px solid black;
@@ -69,7 +79,6 @@ export const InputStyle = styled.input `
     width: 35px;
     border: none;
     text-align:center;
-    
 `;
 
 export const ButtonsStyle = styled.button `

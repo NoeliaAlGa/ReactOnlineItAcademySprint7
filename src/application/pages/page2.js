@@ -5,7 +5,7 @@ import obtenerValorInicialString from "../components/ObtenerValorInicialStrings"
 import guardarPresupuesto from "../components/GuardarPresuspuesto";
 import Checkbox from "../components/Checkbox";
 import BasicInputData from "../components/BasicInputData";
-import SumaPrecios from "../components/SumaPrecios";
+import sumaPrecios from "../components/sumaPrecios";
 import OpcWeb from "../components/OpcWeb";
 import MostrarPresupuestos from "../components/MostrarPresupuestos";
 import {
@@ -15,7 +15,8 @@ import {
   ButtonGuardar,
   StyleForm,
   StyleDivPresupuesto,
-  BodyStyle,
+  StyleH1P2,
+  BodyStyleP2,
 } from "../components/styled";
 
 const Page2 = () => {
@@ -110,7 +111,9 @@ const Page2 = () => {
   );
 
   return (
-    <BodyStyle>
+    <BodyStyleP2>
+      <StyleH1P2>Presupuestos Online</StyleH1P2>
+      <hr/>
       <StyleForm>
         <StyleP>Qué quieres hacer?</StyleP>
         <div>
@@ -155,25 +158,20 @@ const Page2 = () => {
               />
             </div>
           </BasicDataStyle>
-          <SumaPrecios
-            input1={input1}
-            input2={input2}
-            checked1={checked1}
-            checked2={checked2}
-            checked3={checked3}
-          />
+          <StyleSDiv>Precio: {sumaPrecios(checked1, input1, input2, checked2, checked3)}€
+          </StyleSDiv>
         </div>
         <ButtonGuardar onClick={() => {
           guardarPresupuesto(); 
           setNumPresupuestos(numPresupuestos + 1);
-          }}>Guardar</ButtonGuardar>
-    
+          }}>Guardar
+        </ButtonGuardar>
       </StyleForm>
       <StyleDivPresupuesto>
         <StyleP>Presupuestos guardados:</StyleP>
         <MostrarPresupuestos count={numPresupuestos} />
       </StyleDivPresupuesto>
-    </BodyStyle>
+    </BodyStyleP2>
   );
 };
 
