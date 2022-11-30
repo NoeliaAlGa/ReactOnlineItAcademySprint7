@@ -1,7 +1,7 @@
 import { StyleListaPressupuesto, StylePresupuesto } from "./styled";
-import sumaPrecios from "./sumaPrecios";
+import sumaPrecios from "./SumaPrecios";
 const MostrarPresupuestos = () => {
-
+ 
     const presupuestos =
       window.localStorage.getItem("presupuestos") === null
         ? []

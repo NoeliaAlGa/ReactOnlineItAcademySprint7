@@ -9,7 +9,6 @@ function sumaPrecios(checked1, input1, input2, checked2, checked3) {
     let seoPrice = checked2 ? 300 : 0;
   
     let googleAdsPrice = checked3 ? 200 : 0;
-
   
     const suma = webPrice + webPaginas + webIdiomas + seoPrice + googleAdsPrice;;
 

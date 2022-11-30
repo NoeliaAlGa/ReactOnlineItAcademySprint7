@@ -5,7 +5,7 @@ import obtenerValorInicialString from "../components/ObtenerValorInicialStrings"
 import guardarPresupuesto from "../components/GuardarPresuspuesto";
 import Checkbox from "../components/Checkbox";
 import BasicInputData from "../components/BasicInputData";
-import sumaPrecios from "../components/sumaPrecios";
+import sumaPrecios from "../components/SumaPrecios"; 
 import OpcWeb from "../components/OpcWeb";
 import MostrarPresupuestos from "../components/MostrarPresupuestos";
 import {
