@@ -8,11 +8,13 @@ import BasicInputData from "../components/BasicInputData";
 import sumaPrecios from "../components/SumaPrecios"; 
 import OpcWeb from "../components/OpcWeb";
 import MostrarPresupuestos from "../components/MostrarPresupuestos";
+import ordenar from "../components/Ordenar";
 import {
   StyleP,
   StyleSDiv,
   BasicDataStyle,
   ButtonGuardar,
+  ButtonOrdenar,
   StyleForm,
   StyleDivPresupuesto,
   StyleH1P2,
@@ -169,6 +171,26 @@ const Page2 = () => {
       </StyleForm>
       <StyleDivPresupuesto>
         <StyleP>Presupuestos guardados:</StyleP>
+        <BasicDataStyle>
+          <p><b>Ordenar:</b></p>
+          <label>
+            <ButtonOrdenar 
+            onClick={() => {
+              ordenar("alfabetico");
+              setNumPresupuestos(numPresupuestos + 1);
+            }} >Alfabeticamente (cliente)</ButtonOrdenar>
+            <ButtonOrdenar 
+            onClick={() => {
+              ordenar("fecha");
+              setNumPresupuestos(numPresupuestos + 1);
+              }}>Fecha</ButtonOrdenar>
+            <ButtonOrdenar 
+            onClick={() => {
+              ordenar("fecha");
+              setNumPresupuestos(numPresupuestos + 1);
+              }}>Reiniciar</ButtonOrdenar>
+          </label>
+        </BasicDataStyle>
         <MostrarPresupuestos count={numPresupuestos} />
       </StyleDivPresupuesto>
     </BodyStyleP2>

@@ -105,11 +105,21 @@ export const ButtonHome = styled.button `
     font-size: 20px;
     font-weight:bold;
     margin: 1rem
+    cursor: pointer;
 `
 export const ButtonGuardar = styled(ButtonHome) `
     padding: 20px 20px 20px 20px;
     margin-left: 3rem;
     margin-top: 0;
+    cursor: pointer;
+`
+export const ButtonOrdenar = styled(ButtonHome) `
+    font-size: 16px;
+    padding: 1rem;
+    margin: 10px;
+    margin-top: 0;
+    margin-bottom: 0;
+    cursor: pointer;
 `
 export const PHome = styled.p `
     text-decoration: underline overline;

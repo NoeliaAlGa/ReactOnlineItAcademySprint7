@@ -29,8 +29,8 @@ const MostrarPresupuestos = () => {
                     <StylePresupuesto>
                         <li><b>Nombre cliente:</b> {presupuesto.nombreUsuario}</li>
                         <>{presupuestoWeb}</>
-                        <ul>{presupuestoPaginas}</ul>
-                        <ul>{presupuestoIdiomas}</ul>
+                            <ul>{presupuestoPaginas}</ul>
+                            <ul>{presupuestoIdiomas}</ul>
                         <>{presupuestoSEO}</>
                         <>{presupuestoGoogleAds}</>
                         <li><b>Fecha:</b> {presupuesto.fecha}</li>
