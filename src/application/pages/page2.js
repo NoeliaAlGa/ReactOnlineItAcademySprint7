@@ -9,16 +9,20 @@ import sumaPrecios from "../components/SumaPrecios";
 import OpcWeb from "../components/OpcWeb";
 import MostrarPresupuestos from "../components/MostrarPresupuestos";
 import ordenar from "../components/Ordenar";
+import BuscarPresupuesto from "../components/BuscarPresupuesto";
 import {
   StyleP,
   StyleSDiv,
   BasicDataStyle,
   ButtonGuardar,
   ButtonOrdenar,
+  ButtonsStyleBuscar,
   StyleForm,
   StyleDivPresupuesto,
   StyleH1P2,
   BodyStyleP2,
+  StyleSDivBuscarPres,
+  InputStyleBuscar,
 } from "../components/styled";
 
 const Page2 = () => {
@@ -30,6 +34,10 @@ const Page2 = () => {
 
   const [inputData2, setInputData2] = useState(() => {
     return obtenerValorInicialString("inputData2");
+  });
+
+  const [inputBuscar, setInputBuscar] = useState(() => {
+    return obtenerValorInicialString("inputBuscar");
   });
 
   const [checked1, setChecked1] = useState(() => {
@@ -64,6 +72,9 @@ const Page2 = () => {
     }
     if (nomInput === "inputData2") {
       setInputData2(e.target.value);
+    }
+    if (nomInput === "inputBuscar") {
+      setInputBuscar(e.target.value);
     }
 
     window.localStorage.setItem(nomInput, e.target.value);
@@ -191,6 +202,21 @@ const Page2 = () => {
               }}>Reiniciar</ButtonOrdenar>
           </label>
         </BasicDataStyle>
+        <StyleSDivBuscarPres>
+        <p><b>Buscar presupuesto:</b></p>
+          <label>
+            <InputStyleBuscar
+              id="buscarPresupuesto"
+              placeholder="Nombre cliente"
+              value={inputBuscar}
+              onChange={(e) => handleInput(e, "inputBuscar")}>
+            </InputStyleBuscar>
+            <ButtonsStyleBuscar onClick={() => {
+              BuscarPresupuesto(inputBuscar);
+              setNumPresupuestos(numPresupuestos + 1);
+              }}>🔍</ButtonsStyleBuscar>
+          </label>
+        </StyleSDivBuscarPres>
         <MostrarPresupuestos count={numPresupuestos} />
       </StyleDivPresupuesto>
     </BodyStyleP2>

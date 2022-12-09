@@ -6,9 +6,13 @@ const MostrarPresupuestos = () => {
       window.localStorage.getItem("presupuestos") === null
         ? []
         : JSON.parse(window.localStorage.getItem("presupuestos"));
+    const presupuestoBusqueda = JSON.parse(window.localStorage.getItem("busquedaPresupuesto"));
+
+    const listaMostrar = (presupuestoBusqueda === null) 
+    ? presupuestos : presupuestoBusqueda;
     return (
         <div>
-            {presupuestos.map(presupuesto => {
+            {listaMostrar.map(presupuesto => {
                 let presWeb = (presupuesto.web === "true") ? true : false;
                 let presupuestoWeb = (presupuesto.web === "true") ?<li><b>Web:</b></li> : "";
 

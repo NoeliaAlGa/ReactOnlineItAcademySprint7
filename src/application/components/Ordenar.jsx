@@ -23,7 +23,9 @@ function ordenar(tipo) {
             }
             return 0;
         });
+        window.localStorage.setItem("busquedaPresupuesto", null);
     }
     window.localStorage.setItem("presupuestos", JSON.stringify(listaPresOrdenada));
+   
 }
 export default ordenar;
