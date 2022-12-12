@@ -4,7 +4,10 @@ export default function BuscarPresupuesto(nombre) {
     
     const presupuestoBusqueda = listaPresupuestos.filter((presupuesto) => presupuesto.nombreUsuario === nombre);
     
-    let presupuestoEncontrado = (presupuestoBusqueda.length === 0) 
-    ? alert("Este nombre no está en la lista de presupuestos.") 
-    : window.localStorage.setItem("busquedaPresupuesto", JSON.stringify(presupuestoBusqueda));
-}
+    if(presupuestoBusqueda.length === 0) {
+        alert("Este nombre no está en la lista de presupuestos.") 
+    }
+    else {
+        window.localStorage.setItem("busquedaPresupuesto", JSON.stringify(presupuestoBusqueda));
+    }
+};
