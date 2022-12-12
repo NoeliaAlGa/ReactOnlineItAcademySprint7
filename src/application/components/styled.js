@@ -75,10 +75,24 @@ export const StyleSDiv = styled.div `
     font-weight:bold;
 `;
 
+export const StyleSDivBuscarPres = styled(StyleSDiv) `
+    background-color: white;
+    padding: 0;
+`;
+
+
 export const InputStyle = styled.input `
     width: 35px;
     border: none;
     text-align:center;
+`;
+
+export const InputStyleBuscar = styled.input `
+    width: 370px;
+    height: 30px;
+    border: solid 1px coral;
+    margin-right: 1rem;
+    padding-top: 5px;
 `;
 
 export const ButtonsStyle = styled.button `
@@ -90,6 +104,12 @@ export const ButtonsStyle = styled.button `
     font-weight:bold;
     width: 25px;
     cursor: pointer;
+`
+export const ButtonsStyleBuscar = styled(ButtonsStyle) `
+    width: fit-content;
+    cursor: pointer;
+    height: 40px;
+    margin: 0;
 `
 export const HomeStyle = styled.div `
     margin: 0 auto;
@@ -105,11 +125,21 @@ export const ButtonHome = styled.button `
     font-size: 20px;
     font-weight:bold;
     margin: 1rem
+    cursor: pointer;
 `
 export const ButtonGuardar = styled(ButtonHome) `
     padding: 20px 20px 20px 20px;
     margin-left: 3rem;
     margin-top: 0;
+    cursor: pointer;
+`
+export const ButtonOrdenar = styled(ButtonHome) `
+    font-size: 16px;
+    padding: 1rem;
+    margin: 10px;
+    margin-top: 0;
+    margin-bottom: 0;
+    cursor: pointer;
 `
 export const PHome = styled.p `
     text-decoration: underline overline;
